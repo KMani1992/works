@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />-->
+            <PatternLayout pattern="%-5p | %X | %d{yyyy-MM-dd HH:mm:ss-sss} | [%t] | %x %C{3} (%F:%L) - %r > %M %m%n"/>
+            
+            <Filters>
+                <!-- Now deny warn, error and fatal messages -->
+                <ThresholdFilter level="warn"  onMatch="DENY"   onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="error" onMatch="DENY"   onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="fatal" onMatch="DENY"   onMismatch="NEUTRAL"/>
+
+                <!-- This filter accepts info, warn, error, fatal and denies debug/trace -->
+                <ThresholdFilter level="info"  onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+        
+        <RollingFile name="RollingFile" fileName="app.log"
+                     filePattern="$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="1 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            
+            
+        </RollingFile>
+        
+        <File name="MyFile" fileName="output-${sys:hname}.log" 
+              immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!--            <filter class="LoggerFilterStringMatch">
+            <param name="stringToMatch" value="hai" />
+            <param name="acceptOnMatch" value="true" />
+            </filter>-->
+        </File>
+        <File name="MyFile2" fileName="output-${sys:hname}_2.log" 
+              immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <!--        <appender name="default" class="LoggerAppenderRollingFile">
+            <layout class="LoggerLayoutSimple" />
+            <param name="file" value="file.log" />
+            <param name="maxFileSize" value="1MB" />
+            <param name="maxBackupIndex" value="5" />
+        </appender>-->
+    </Appenders>
+    <Loggers>
+        <Logger name="log4j.Log4J" level="debug"
+                additivity="false">
+            <Appender-ref ref="RollingFile" level="debug" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="log4j.test.Log4jTest" level="debug"
+                additivity="false">
+            <Appender-ref ref="MyFile2" level="debug" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Root level="debug">
+            <AppenderRef ref="Console" />
+            <!--<AppenderRef ref="MyFile"/>-->
+        </Root>        
+    </Loggers>
+</Configuration>
