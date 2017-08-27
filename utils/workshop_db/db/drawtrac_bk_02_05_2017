@@ -1,0 +1,302 @@
+CREATE DATABASE  IF NOT EXISTS `drawtrac` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `drawtrac`;
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
+--
+-- Host: localhost    Database: drawtrac
+-- ------------------------------------------------------
+-- Server version	5.5.29
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `component`
+--
+
+DROP TABLE IF EXISTS `component`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `component` (
+  `component_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `component_type` varchar(45) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`component_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `component`
+--
+
+LOCK TABLES `component` WRITE;
+/*!40000 ALTER TABLE `component` DISABLE KEYS */;
+/*!40000 ALTER TABLE `component` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `designation`
+--
+
+DROP TABLE IF EXISTS `designation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `designation` (
+  `desig_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `designation_name` varchar(45) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`desig_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `designation`
+--
+
+LOCK TABLES `designation` WRITE;
+/*!40000 ALTER TABLE `designation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `designation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `milestone`
+--
+
+DROP TABLE IF EXISTS `milestone`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `milestone` (
+  `milestone_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `milestone_type` varchar(45) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`milestone_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `milestone`
+--
+
+LOCK TABLES `milestone` WRITE;
+/*!40000 ALTER TABLE `milestone` DISABLE KEYS */;
+/*!40000 ALTER TABLE `milestone` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `priority`
+--
+
+DROP TABLE IF EXISTS `priority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `priority` (
+  `priority_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `priority_type` varchar(45) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`priority_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `priority`
+--
+
+LOCK TABLES `priority` WRITE;
+/*!40000 ALTER TABLE `priority` DISABLE KEYS */;
+/*!40000 ALTER TABLE `priority` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `task_type`
+--
+
+DROP TABLE IF EXISTS `task_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_type` (
+  `task_type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_type_name` varchar(100) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`task_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task_type`
+--
+
+LOCK TABLES `task_type` WRITE;
+/*!40000 ALTER TABLE `task_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ticket`
+--
+
+DROP TABLE IF EXISTS `ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ticket` (
+  `ticket_id` int(11) NOT NULL DEFAULT '0',
+  `summary` varchar(150) DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `ticket_type` int(11) DEFAULT NULL,
+  `tag_name` varchar(100) DEFAULT NULL,
+  `owner` int(11) DEFAULT NULL,
+  `cc` varchar(100) DEFAULT NULL,
+  `milestone` int(11) DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `target_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `component` int(11) DEFAULT NULL,
+  `reporter` int(11) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ticket_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket`
+--
+
+LOCK TABLES `ticket` WRITE;
+/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ticket_type`
+--
+
+DROP TABLE IF EXISTS `ticket_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ticket_type` (
+  `ticket_type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_type` varchar(45) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`ticket_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket_type`
+--
+
+LOCK TABLES `ticket_type` WRITE;
+/*!40000 ALTER TABLE `ticket_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(55) DEFAULT NULL,
+  `password` varchar(55) DEFAULT NULL,
+  `old_password` varchar(55) DEFAULT NULL,
+  `tlid` int(11) DEFAULT NULL,
+  `stlid` int(11) DEFAULT NULL,
+  `manager` int(11) DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `active` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wsr_plan`
+--
+
+DROP TABLE IF EXISTS `wsr_plan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wsr_plan` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(11) DEFAULT NULL,
+  `from_date` datetime DEFAULT NULL,
+  `to_date` datetime DEFAULT NULL,
+  `task_type` int(11) DEFAULT NULL,
+  `unplanned` varchar(1) DEFAULT NULL,
+  `hours_planned` int(11) DEFAULT NULL,
+  `time_spent` int(11) DEFAULT NULL,
+  `total_time_spent` int(11) DEFAULT NULL,
+  `no_of_week_planned` int(11) DEFAULT NULL,
+  `week_flag` varchar(1) DEFAULT NULL,
+  `tl_approval` varchar(1) DEFAULT NULL,
+  `tl_comments` varchar(250) DEFAULT NULL,
+  `stl_approval` varchar(1) DEFAULT NULL,
+  `stl_comments` varchar(250) DEFAULT NULL,
+  `planned` varchar(250) DEFAULT NULL,
+  `completed` varchar(250) DEFAULT NULL,
+  `last_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wsr_plan`
+--
+
+LOCK TABLES `wsr_plan` WRITE;
+/*!40000 ALTER TABLE `wsr_plan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wsr_plan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wsr_tag`
+--
+
+DROP TABLE IF EXISTS `wsr_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wsr_tag` (
+  `tag_id` int(11) DEFAULT NULL,
+  `tag_name` varchar(50) DEFAULT NULL,
+  `active` varchar(1) DEFAULT NULL,
+  `tag_status` varchar(50) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wsr_tag`
+--
+
+LOCK TABLES `wsr_tag` WRITE;
+/*!40000 ALTER TABLE `wsr_tag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wsr_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-05-02  8:17:17

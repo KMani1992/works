@@ -1,0 +1,1 @@
+-XX:ErrorFile=/var/log/java/hs_err_pid%p.log

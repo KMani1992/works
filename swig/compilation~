@@ -1,0 +1,11 @@
+//actual
+
+$ swig -java example.i
+$ gcc -c example_wrap.c  -I/usr/java/include -I/usr/java/include/solaris
+$ ld -G example_wrap.o  -o libexample.so
+
+// practical
+1.)$ swig -java example.i
+2.)gcc -c *.c  -I/usr/lib/java/jdk1.8.0_91/include -I/usr/lib/java/jdk1.8.0_91/include/linux
+3.)ld -G example_wrap.o  -o libexample.so
+
